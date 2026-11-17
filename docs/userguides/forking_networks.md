@@ -39,20 +39,25 @@ Learn more about setting up networks in the [the networks guide](./networks.html
 
 ## Advanced Fork Configuration
 
-You can configure additional fork options in your `ape-config.yaml` file:
+Set the upstream provider and fork block in the `foundry` section of `ape-config.yaml`.
 
 ```yaml
 ethereum:
   mainnet_fork:
     default_provider: foundry
-    fork:
-      # Fork from a specific block number
-      block_number: 17000000
-      # Optionally enable RPC caching to speed up fork initialization
-      cache: true
-      # Override default upstream provider if needed
-      upstream_provider: alchemy
+foundry:
+  fork:
+    ethereum:
+      mainnet:
+        block_number: 17000000
+        upstream_provider: alchemy
 ```
+
+Use the upstream network name, `mainnet`, as the key under `foundry.fork.ethereum`.
+
+When choosing an upstream RPC for an older block, compare endpoints in the
+[Chain.Love Ethereum API directory](https://eth.chain.love/toolbox/apis). Before starting the fork,
+check that the endpoint can read state at the pinned block with `eth_getBalance`.
 
 ## Forking Plugin Networks
 
