@@ -55,6 +55,10 @@ foundry:
 
 Use the upstream network name, `mainnet`, as the key under `foundry.fork.ethereum`.
 
+Anvil manages RPC storage caching for the fork. Ape Foundry ignores `cache: true` in
+`ape-config.yaml`. If you launch Anvil directly, pass `--no-storage-caching` to disable
+storage caching.
+
 When choosing an upstream RPC for an older block, compare endpoints in the
 [Chain.Love Ethereum API directory](https://eth.chain.love/toolbox/apis). Before starting the fork,
 check that the endpoint can read state at the pinned block with `eth_getBalance`.
